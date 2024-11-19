@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let planet of planets">
+        <ion-card>
+          <img [src]="planet.image" [alt]="planet.name"/>
+          <ion-card-header>
+            <ion-card-title>{{ planet.name }}</ion-card-title>
+            <ion-chip [color]="planet.isDestroyed ? 'danger' : 'success'">
+              {{ planet.isDestroyed ? 'Destruido' : 'Existente' }}
+            </ion-chip>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ planet.description }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más planetas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

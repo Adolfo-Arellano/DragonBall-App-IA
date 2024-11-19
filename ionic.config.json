@@ -1,0 +1,7 @@
+{
+  "name": "dragonball-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

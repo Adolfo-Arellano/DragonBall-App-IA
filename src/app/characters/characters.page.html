@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="main-toolbar">
+    <ion-title class="ion-text-center">Personajes de Dragon Ball</ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="search-toolbar">
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionChange)="searchCharacters()"
+      placeholder="Buscar personaje"
+      class="custom-searchbar"
+      animated>
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="character-content">
+  <div class="character-grid">
+    <div *ngFor="let character of characters" class="character-card-container">
+      <ion-card class="character-card">
+        <div class="card-header">
+          <div class="character-info">
+            <h2>{{ character.name }}</h2>
+            <ion-chip [class]="'race-chip ' + character.race.toLowerCase()">
+              {{ character.race }}
+            </ion-chip>
+          </div>
+        </div>
+
+        <div class="character-image-container">
+          <img [src]="character.image" [alt]="character.name" class="character-image">
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-row">
+            <div class="stat-item">
+              <span class="stat-label">Ki</span>
+              <span class="stat-value">{{ character.ki }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Max Ki</span>
+              <span class="stat-value">{{ character.maxKi }}</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-item">
+              <span class="stat-label">Género</span>
+              <span class="stat-value">{{ character.gender }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Afiliación</span>
+              <span class="stat-value">{{ character.affiliation }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="description-container">
+          <p [class.truncated]="!character.showFullDescription">
+            {{ character.description }}
+          </p>
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            (click)="character.showFullDescription = !character.showFullDescription"
+            class="ver-mas-btn">
+            {{ character.showFullDescription ? 'Ver menos' : 'Ver más' }}
+          </ion-button>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más personajes...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

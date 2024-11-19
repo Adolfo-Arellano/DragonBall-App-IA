@@ -1,0 +1,156 @@
+:host {
+    --ion-background-color: transparent;
+  }
+  
+  .auth-content {
+    --background: transparent;
+  }
+  
+  .auth-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image: url('../../assets/dragon-ball-background3.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  .logo-container {
+    position: relative;
+    margin-bottom: 2rem;
+    z-index: 1;
+    
+    .auth-logo {
+      max-width: 200px;
+      height: auto;
+    }
+  }
+  
+  .form-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: fadeIn 0.3s ease-in-out;
+  
+    h1 {
+      color: #ECF0F1;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  .auth-form {
+    .form-field {
+      margin-bottom: 1rem;
+    }
+  
+    .custom-input {
+      --background: rgba(255, 255, 255, 0.1);
+      --border-color: rgba(255, 255, 255, 0.2);
+      --border-radius: 8px;
+      --border-width: 1px;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+  
+      &.invalid {
+        --border-color: rgba(231, 76, 60, 0.7);
+      }
+  
+      ion-label {
+        color: #ECF0F1;
+      }
+  
+      ion-input {
+        --color: #ECF0F1;
+        --placeholder-color: rgba(236, 240, 241, 0.7);
+      }
+    }
+  
+    .error-message {
+      color: #E74C3C;
+      font-size: 0.8rem;
+      margin-left: 16px;
+      margin-top: 4px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+  
+    .submit-button {
+      --background: #FF9232;
+      --background-activated: #e67e22;
+      --border-radius: 8px;
+      --color: #ECF0F1;
+      margin-top: 2rem;
+      font-weight: bold;
+      height: 48px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(255, 146, 50, 0.3);
+  
+      &:disabled {
+        --background: rgba(149, 165, 166, 0.5);
+        box-shadow: none;
+      }
+    }
+  
+    .toggle-auth {
+      margin-top: 1rem;
+      text-align: center;
+  
+      .toggle-button {
+        --color: #00A8FF;
+        font-weight: 500;
+        text-transform: none;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .forgot-password {
+        margin-top: 1rem;
+        text-align: center;
+      
+        .forgot-button {
+          --color: #00A8FF;
+          font-size: 0.9rem;
+          font-weight: 500;
+          text-transform: none;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}

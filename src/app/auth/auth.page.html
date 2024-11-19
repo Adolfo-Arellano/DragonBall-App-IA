@@ -1,0 +1,117 @@
+<ion-content [fullscreen]="true" class="auth-content">
+  <div class="auth-container">
+    <div class="logo-container">
+      <img src="assets/dragon-ball-logo.png" alt="Dragon Ball Logo" class="auth-logo">
+    </div>
+
+    <div class="form-container" *ngIf="!isForgotPassword">
+      <h1>{{ isLogin ? 'Iniciar Sesión' : 'Registro' }}</h1>
+      
+      <form [formGroup]="authForm" (ngSubmit)="authenticate()" class="auth-form">
+        <div class="form-field">
+          <ion-item class="custom-input" lines="none">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input 
+              type="email" 
+              formControlName="email">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="authForm.get('email')?.touched && authForm.get('email')?.invalid">
+            <span *ngIf="authForm.get('email')?.errors?.['required']">El email es requerido</span>
+            <span *ngIf="authForm.get('email')?.errors?.['email']">Email inválido</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <ion-item class="custom-input" lines="none">
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input 
+              type="password" 
+              formControlName="password">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="authForm.get('password')?.touched && authForm.get('password')?.invalid">
+            <span *ngIf="authForm.get('password')?.errors?.['required']">La contraseña es requerida</span>
+            <span *ngIf="authForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres</span>
+          </div>
+        </div>
+
+        <div class="form-field" *ngIf="!isLogin">
+          <ion-item class="custom-input" lines="none">
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
+            <ion-input 
+              type="password" 
+              formControlName="confirmPassword">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="authForm.get('confirmPassword')?.touched && authForm.errors?.['mismatch']">
+            Las contraseñas no coinciden
+          </div>
+        </div>
+
+        <ion-button 
+          expand="block" 
+          type="submit" 
+          class="submit-button" 
+          [disabled]="authForm.invalid || loading">
+          {{ isLogin ? 'INICIAR SESIÓN' : 'REGISTRARSE' }}
+        </ion-button>
+
+        <div class="toggle-auth">
+          <ion-button 
+            fill="clear" 
+            (click)="toggleAuthMode()"
+            class="toggle-button">
+            {{ isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión' }}
+          </ion-button>
+        </div>
+
+        <div class="forgot-password" *ngIf="isLogin">
+          <ion-button 
+            fill="clear" 
+            (click)="isLogin = true; isForgotPassword = true"
+            class="forgot-button">
+            ¿Olvidaste tu contraseña?
+          </ion-button>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-container" *ngIf="isForgotPassword">
+      <h1>Recuperar Contraseña</h1>
+      
+      <form [formGroup]="resetForm" (ngSubmit)="resetPassword()" class="auth-form">
+        <div class="form-field">
+          <ion-item class="custom-input" lines="none">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input 
+              type="email" 
+              formControlName="email">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="resetForm.get('email')?.touched && resetForm.get('email')?.invalid">
+            <span *ngIf="resetForm.get('email')?.errors?.['required']">El email es requerido</span>
+            <span *ngIf="resetForm.get('email')?.errors?.['email']">Email inválido</span>
+          </div>
+        </div>
+
+        <ion-button 
+          expand="block" 
+          type="submit" 
+          class="submit-button" 
+          [disabled]="resetForm.invalid || loading">
+          ENVIAR CORREO
+        </ion-button>
+
+        <div class="toggle-auth">
+          <ion-button 
+            fill="clear" 
+            (click)="isForgotPassword = false"
+            class="toggle-button">
+            Volver a Inicio de Sesión
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

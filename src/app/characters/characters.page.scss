@@ -1,0 +1,192 @@
+:root {
+    --color-goku: #FF9232;
+    --color-ki: #00A8FF;
+    --color-shenlong: #2ECC71;
+    --color-nube: #FFC312;
+    --color-piccolo: #9B59B6;
+    --color-poder: #E74C3C;
+    --color-oscuro: #2C3E50;
+    --color-capsule: #95A5A6;
+    --color-base: #ECF0F1;
+}
+  
+// Estilos del header
+.main-toolbar {
+    --background: var(--color-oscuro);
+    --color: var(--color-base);
+  
+    ion-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+}
+  
+.search-toolbar {
+    --background: var(--color-oscuro);
+    padding: 0 10px;
+}
+  
+.custom-searchbar {
+    --background: rgba(255, 255, 255, 0.1);
+    --color: var(--color-base);
+    --placeholder-color: var(--color-capsule);
+    --icon-color: var(--color-capsule);
+    --border-radius: 8px;
+    --box-shadow: none;
+}
+  
+// Contenido principal
+.character-content {
+    --background: var(--color-oscuro);
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 16px;
+}
+  
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding-bottom: 16px;
+}
+  
+.character-card {
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  
+    .card-header {
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.2);
+  
+      h2 {
+        color: var(--color-base);
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  
+    .character-image-container {
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+  
+      .character-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  
+    .stats-container {
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.1);
+  
+      .stat-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 8px;
+  
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+  
+      .stat-item {
+        .stat-label {
+          display: block;
+          color: var(--color-capsule);
+          font-size: 0.9rem;
+          margin-bottom: 4px;
+        }
+  
+        .stat-value {
+          display: block;
+          color: var(--color-base);
+          font-weight: bold;
+        }
+      }
+    }
+  
+    .description-container {
+      padding: 16px;
+      
+      p {
+        color: var(--color-base);
+        margin: 0;
+        line-height: 1.5;
+  
+        &.truncated {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+    }
+}
+  
+// Chips de raza
+.race-chip {
+    --background: transparent;
+    border: 1px solid;
+    
+    &.saiyan {
+      --color: var(--color-goku);
+      border-color: var(--color-goku);
+    }
+    
+    &.human {
+      --color: var(--color-ki);
+      border-color: var(--color-ki);
+    }
+    
+    &.namekian {
+      --color: var(--color-shenlong);
+      border-color: var(--color-shenlong);
+    }
+    
+    &.android {
+      --color: var(--color-piccolo);
+      border-color: var(--color-piccolo);
+    }
+    
+    &.majin {
+      --color: var(--color-poder);
+      border-color: var(--color-poder);
+    }
+}
+  
+  // Botón Ver más
+  .ver-mas-btn {
+    --color: var(--color-ki);
+    text-transform: none;
+    margin-top: 8px;
+    
+    &:hover {
+      --color: var(--color-goku);
+    }
+}
+  
+  // Animación de entrada
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+  
+  .character-card-container {
+    animation: fadeIn 0.5s ease-out;
+}
