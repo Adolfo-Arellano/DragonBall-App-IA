@@ -141,23 +141,23 @@
   margin-top: 2rem;
   
   .story-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.9);
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     
     ion-card-header {
-      background: var(--ion-color-primary);
+      background: rgb(46, 204, 113, 0.7);
       padding: 16px;
     }
 
     ion-card-title {
-      color: var(--ion-color-light);
+      color: #ECF0F1;
       font-size: 1.3rem;
       text-align: center;
     }
 
     ion-card-content {
-      color: var(--ion-color-dark);
+      color: #ECF0F1;
       line-height: 1.8;
       font-size: 1.1rem;
       padding: 24px;

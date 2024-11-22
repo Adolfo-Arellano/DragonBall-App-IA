@@ -52,7 +52,7 @@ export class StoriesPage {
     }
 
     const loading = await this.loadingCtrl.create({
-      message: 'Generando historia...'
+      message: 'Generando el cuento...'
     });
     await loading.present();
 
@@ -64,7 +64,7 @@ export class StoriesPage {
       error => {
         console.error('Error:', error);
         loading.dismiss();
-        this.showError('Error al generar la historia');
+        this.showError('Error al generar el cuento');
       }
     );
   }
