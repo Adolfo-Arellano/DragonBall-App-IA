@@ -1,0 +1,167 @@
+ion-content {
+  --background: none;
+  background: url('../../assets/dragon-ball-background5.jpg') no-repeat center center fixed;
+  background-size: cover;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+ion-header ion-toolbar {
+    --background: rgba(46, 204, 113, 0.3);
+
+    ion-title {
+        color: #ECF0F1;
+        font-size: 1.5rem;
+        font-weight: bolder;
+    }
+}
+
+.profile-container {
+  position: relative;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.avatar-section {
+  text-align: center;
+  margin: 20px 0;
+
+  h2 {
+    color: rgb(255, 146, 50, 0.9);
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .avatar-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 3px solid rgba(46, 204, 113, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    ion-icon {
+      font-size: 64px;
+      color: rgba(46, 204, 113, 0.7);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+}
+
+.username-section {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px 0;
+
+  ion-item {
+    --background: rgb(149, 165, 166, 0.5);
+    --border-radius: 10px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    margin-bottom: 20px;
+
+    ion-label {
+      color: rgb(255, 146, 50, 0.9);
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    ion-input {
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      --color: rgb(255, 146, 50, 0.9);
+      --placeholder-color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.email-section {
+  width: 100%;
+  max-width: 400px;
+
+  ion-item {
+    --background: rgb(149, 165, 166, 0.5);
+    --border-radius: 10px;
+    
+    ion-label {
+      h2 {
+        color: rgb(255, 146, 50, 0.9);
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      p {
+        color: rgb(255, 146, 50, 0.9);
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.logout-btn {
+  margin-top: auto;
+  --border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.character-select-modal {
+    --height: 80%;
+    
+    ion-header ion-toolbar {
+      --background: rgba(46, 204, 113, 0.3);
+      
+      ion-title, ion-button {
+        color: #ECF0F1;
+      }
+    }
+  
+    .character-card {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 8px;
+      
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        background: #000;
+        padding: 8px;
+      }
+  
+      .character-name {
+        color: #ECF0F1;
+        text-align: center;
+        padding: 8px;
+        font-size: 14px;
+      }
+    }
+}

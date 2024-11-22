@@ -13,6 +13,8 @@ export class PlanetsPage implements OnInit {
   currentPage = 1;
   totalPages = 1;
   isLoading = false;
+  searchTerm: string = '';
+  private allPlanets: Planet[] = [];
 
   constructor(
     private dragonBallService: DragonBallService,
@@ -36,8 +38,10 @@ export class PlanetsPage implements OnInit {
         (response) => {
           if (event) {
             this.planets = [...this.planets, ...response.items];
+            this.allPlanets = [...this.allPlanets, ...response.items];
           } else {
             this.planets = response.items;
+            this.allPlanets = response.items;
           }
           this.totalPages = response.meta.totalPages;
           this.isLoading = false;
@@ -59,6 +63,19 @@ export class PlanetsPage implements OnInit {
         }
       );
     }
+  }
+
+  searchPlanets() {
+    if (!this.searchTerm.trim()) {
+      this.planets = [...this.allPlanets];
+      return;
+    }
+
+    const searchTermLower = this.searchTerm.toLowerCase();
+    this.planets = this.allPlanets.filter(planet => 
+      planet.name.toLowerCase().includes(searchTermLower) ||
+      planet.description.toLowerCase().includes(searchTermLower)
+    );
   }
 
   loadMore(event: any) {

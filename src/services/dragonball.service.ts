@@ -11,7 +11,7 @@ export class DragonBallService {
 
   constructor(private http: HttpClient) {}
 
-  getCharacters(page: number = 1, limit: number = 10): Observable<ApiResponse<Character>> {
+  getCharacters(page: number = 1, limit: number = 100): Observable<ApiResponse<Character>> {
     return this.http.get<ApiResponse<Character>>(`${this.apiUrl}/characters?page=${page}&limit=${limit}`);
   }
 

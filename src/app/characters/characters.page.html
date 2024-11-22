@@ -65,6 +65,43 @@
             {{ character.showFullDescription ? 'Ver menos' : 'Ver más' }}
           </ion-button>
         </div>
+
+        <div class="transformations-container" *ngIf="character.transformations?.length">
+          <ion-button 
+            expand="block"
+            fill="clear"
+            (click)="character.showTransformations = !character.showTransformations">
+            {{ character.showTransformations ? 'Ocultar transformaciones' : 'Ver transformaciones' }}
+            <ion-icon 
+              [name]="character.showTransformations ? 'chevron-up' : 'chevron-down'" 
+              slot="end">
+            </ion-icon>
+          </ion-button>
+
+          <swiper-container 
+            *ngIf="character.showTransformations"
+            [modules]="swiperModules"
+            [slidesPerView]="1.2"
+            [spaceBetween]="16"
+            [navigation]="true"
+            [pagination]="true"
+            [centeredSlides]="true"
+            class="transformation-slides">
+            <swiper-slide *ngFor="let transform of character.transformations">
+              <ion-card class="transformation-card">
+                <img [src]="transform.image" [alt]="transform.name">
+                <ion-card-header>
+                  <ion-card-title>{{ transform.name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <div class="ki-info">
+                    <span>Ki: {{ transform.ki }}</span>
+                  </div>
+                </ion-card-content>
+              </ion-card>
+            </swiper-slide>
+          </swiper-container>
+        </div>
       </ion-card>
     </div>
   </div>

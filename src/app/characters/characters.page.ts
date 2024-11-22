@@ -5,6 +5,7 @@ import { Character } from '../interfaces/api.interfaces';
 
 interface CharacterWithUI extends Character {
   showFullDescription: boolean;
+  showTransformations: boolean;
 }
 
 @Component({
@@ -18,6 +19,7 @@ export class CharactersPage implements OnInit {
   currentPage = 1;
   totalPages = 1;
   isLoading = false;
+  swiperModules = ['navigation', 'pagination'];
 
   constructor(
     private dragonBallService: DragonBallService,
@@ -49,19 +51,47 @@ export class CharactersPage implements OnInit {
       await loading.present();
 
       this.dragonBallService.getCharacters(this.currentPage).subscribe(
-        (response) => {
-          const newCharacters = response.items.map(char => ({
-            ...char,
-            showFullDescription: false
-          }));
-          
-          if (event) {
-            this.characters = [...this.characters, ...newCharacters];
-          } else {
-            this.characters = newCharacters;
+        async (response) => {
+          try {
+            const newCharacters = await Promise.all(
+              response.items.map(async (char) => {
+                const characterWithTransformations = await this.dragonBallService
+                  .getCharacterById(char.id)
+                  .toPromise();
+                
+                if (!characterWithTransformations) {
+                  throw new Error(`No se pudo cargar el personaje con ID ${char.id}`);
+                }
+
+                return {
+                  ...characterWithTransformations,
+                  showFullDescription: false,
+                  showTransformations: false,
+                  id: characterWithTransformations.id,
+                  name: characterWithTransformations.name || 'Sin nombre',
+                  ki: characterWithTransformations.ki || '0',
+                  maxKi: characterWithTransformations.maxKi || '0',
+                  race: characterWithTransformations.race || 'Desconocido',
+                  gender: characterWithTransformations.gender || 'Desconocido',
+                  description: characterWithTransformations.description || 'Sin descripción',
+                  image: characterWithTransformations.image || 'assets/default-character.png',
+                  affiliation: characterWithTransformations.affiliation || 'Desconocido',
+                  transformations: characterWithTransformations.transformations || []
+                } as CharacterWithUI;
+              })
+            );
+            
+            if (event) {
+              this.characters = [...this.characters, ...newCharacters];
+            } else {
+              this.characters = newCharacters;
+            }
+            
+            this.totalPages = response.meta.totalPages;
+          } catch (error) {
+            console.error('Error al cargar personajes:', error);
           }
           
-          this.totalPages = response.meta.totalPages;
           this.isLoading = false;
           loading.dismiss();
           
@@ -100,8 +130,19 @@ export class CharactersPage implements OnInit {
         (characters) => {
           this.characters = characters.map(char => ({
             ...char,
-            showFullDescription: false
-          }));
+            showFullDescription: false,
+            showTransformations: false,
+            id: char.id,
+            name: char.name || 'Sin nombre',
+            ki: char.ki || '0',
+            maxKi: char.maxKi || '0',
+            race: char.race || 'Desconocido',
+            gender: char.gender || 'Desconocido',
+            description: char.description || 'Sin descripción',
+            image: char.image || 'assets/default-character.png',
+            affiliation: char.affiliation || 'Desconocido',
+            transformations: char.transformations || []
+          } as CharacterWithUI));
           loading.dismiss();
         },
         (error) => {

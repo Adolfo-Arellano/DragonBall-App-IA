@@ -1,0 +1,96 @@
+.main-toolbar {
+  --background: rgb(46, 204, 113, 0.3);
+  --color: #ECF0F1;
+  
+  ion-title {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #ECF0F1;
+  }
+}
+
+.search-toolbar {
+  --background: rgb(46, 204, 113, 0.3);
+  padding: 0 10px;
+}
+
+.custom-searchbar {
+  --background: #2C3E50;
+  --color: var(--color-base);
+  --placeholder-color: var(--color-capsule);
+  --icon-color: var(--color-capsule);
+  --border-radius: 8px;
+  --box-shadow: none;
+}
+
+.planet-content {
+  --background: rgb(46, 204, 113, 0.3);
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+}
+
+.planet-card {
+  background: linear-gradient(145deg, #34495e, #2c3e50);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  ion-card-header {
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+
+    ion-card-title {
+      color: rgb(255, 146, 50, 0.9);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  }
+
+  ion-card-content {
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.1);
+    
+    p {
+      color: rgb(255, 146, 50, 0.9);
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+.status-chip {
+  --background: transparent;
+  border: 1px solid;
+  
+  &.destroyed {
+    --color: #E74C3C;
+    border-color: #E74C3C;
+  }
+  
+  &.existing {
+    --color: #2ECC71;
+    border-color: #2ECC71;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

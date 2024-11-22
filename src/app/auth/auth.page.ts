@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
 })
+
 export class AuthPage implements OnInit {
   isLogin = true;
   isForgotPassword = false;
@@ -33,7 +34,6 @@ export class AuthPage implements OnInit {
   }
 
   ngOnInit() {
-    // Ocultar las tabs al entrar
     const tabBar = document.querySelector('ion-tab-bar');
     if (tabBar) {
       tabBar.style.display = 'none';
@@ -41,7 +41,6 @@ export class AuthPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    // Mostrar las tabs al salir
     const tabBar = document.querySelector('ion-tab-bar');
     if (tabBar) {
       tabBar.style.display = 'flex';
@@ -71,7 +70,7 @@ export class AuthPage implements OnInit {
   toggleAuthMode() {
     this.isLogin = !this.isLogin;
     this.isForgotPassword = false;
-    this.initializeForm(); // Esto resetea el formulario al cambiar de modo
+    this.initializeForm();
   }
 
   async authenticate() {
@@ -131,7 +130,7 @@ export class AuthPage implements OnInit {
           position: 'top'
         });
         await toast.present();
-        this.isForgotPassword = false; // Volver a la vista de login
+        this.isForgotPassword = false;
         this.resetForm.reset();
       } catch (error: any) {
         const alert = await this.alertCtrl.create({

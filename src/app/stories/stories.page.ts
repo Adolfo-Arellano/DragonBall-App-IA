@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DragonBallService } from '../../services/dragonball.service';
-import { ClaudeService } from '../../services/claude.service';
+import { OpenaiService } from '../../services/openai.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { Character } from '../interfaces/api.interfaces';
 
@@ -9,6 +9,7 @@ import { Character } from '../interfaces/api.interfaces';
   templateUrl: './stories.page.html',
   styleUrls: ['./stories.page.scss'],
 })
+
 export class StoriesPage {
   characters: Character[] = [];
   selectedCharacters: Character[] = [];
@@ -18,7 +19,7 @@ export class StoriesPage {
 
   constructor(
     private dragonBallService: DragonBallService,
-    private claudeService: ClaudeService,
+    private openaiService: OpenaiService,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController
   ) {
@@ -55,7 +56,7 @@ export class StoriesPage {
     });
     await loading.present();
 
-    this.claudeService.generateStory(this.selectedCharacters, this.targetAge).subscribe(
+    this.openaiService.generateStory(this.selectedCharacters, this.targetAge).subscribe(
       response => {
         this.generatedStory = response.story;
         loading.dismiss();

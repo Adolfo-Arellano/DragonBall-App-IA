@@ -1,12 +1,27 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar class="main-toolbar">
+    <ion-title class="ion-text-center">Planetas de Dragon Ball</ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="search-toolbar">
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionChange)="searchPlanets()"
+      placeholder="Buscar planeta"
+      class="custom-searchbar"
+      animated>
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="planet-content">
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let planet of planets">
-        <ion-card>
+        <ion-card class="planet-card">
           <img [src]="planet.image" [alt]="planet.name"/>
           <ion-card-header>
             <ion-card-title>{{ planet.name }}</ion-card-title>
-            <ion-chip [color]="planet.isDestroyed ? 'danger' : 'success'">
+            <ion-chip [class]="planet.isDestroyed ? 'status-chip destroyed' : 'status-chip existing'">
               {{ planet.isDestroyed ? 'Destruido' : 'Existente' }}
             </ion-chip>
           </ion-card-header>

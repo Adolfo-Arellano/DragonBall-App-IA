@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar class="main-toolbar">
-    <ion-title>Generador de Cuentos</ion-title>
+    <ion-title class="ion-text-center">Crea tu Cuento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="stories-content">
   <div class="story-generator">
     <div class="character-selector">
-      <h2>Selecciona los personajes (máx. 3)</h2>
+      <h2>Selecciona tus personajes favoritos (máx. 3)</h2>
       <div class="characters-grid">
         <ion-card 
           *ngFor="let character of characters" 
@@ -24,18 +24,15 @@
 
     <div class="story-options">
       <ion-item>
-        <ion-label position="floating">Edad del lector</ion-label>
+        <ion-label>Edad del lector: {{ targetAge }} años</ion-label>
         <ion-range
           [(ngModel)]="targetAge"
           min="4"
           max="12"
           pin
-          color="primary"
           [snaps]="true"
           [ticks]="true"
           [step]="1">
-          <ion-label slot="start">4</ion-label>
-          <ion-label slot="end">12</ion-label>
         </ion-range>
       </ion-item>
 
@@ -44,14 +41,15 @@
         (click)="generateStory()"
         [disabled]="selectedCharacters.length === 0"
         class="generate-button">
-        Generar Cuento
+        <ion-icon name="book-outline" slot="start"></ion-icon>
+        Crear mi Cuento
       </ion-button>
     </div>
 
     <div class="story-result" *ngIf="generatedStory">
       <ion-card class="story-card">
         <ion-card-header>
-          <ion-card-title>Tu cuento de Dragon Ball</ion-card-title>
+          <ion-card-title>Tu Aventura Dragon Ball</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           {{ generatedStory }}

@@ -1,21 +1,78 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Ajustes</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app class="ion-background-image">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="ion-text-center">Mi Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-item *ngIf="user$ | async as user">
-      <ion-label>
-        <h2>Email</h2>
-        <p>{{ user.email }}</p>
-      </ion-label>
-    </ion-item>
+  <ion-content class="ion-padding">
+    <div class="profile-container">
+      <div class="avatar-section">
+        <div class="avatar-placeholder" id="select-avatar-btn">
+          <ng-container *ngIf="selectedCharacter; else noAvatar">
+            <img [src]="selectedCharacter.image" [alt]="selectedCharacter.name">
+          </ng-container>
+          <ng-template #noAvatar>
+            <ion-icon name="person-outline"></ion-icon>
+          </ng-template>
+        </div>
+        <h2 class="username-display">{{ username || 'Guerrero' }}</h2>
+      </div>
 
-    <ion-item button (click)="logout()">
-      <ion-icon name="log-out" slot="start"></ion-icon>
-      <ion-label>Cerrar Sesión</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+      <div class="username-section">
+        <ion-item>
+          <ion-label position="stacked">Mi nombre de guerrero</ion-label>
+          <ion-input 
+            [(ngModel)]="username"
+            (ionChange)="updateUsername()"
+            placeholder="¡Escribe tu nombre aquí!"
+            class="custom-input">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <div class="email-section">
+        <ion-item *ngIf="user$ | async as user">
+          <ion-label>
+            <h2>Email</h2>
+            <p>{{ user.email }}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+
+      <ion-button 
+        expand="block"
+        color="danger"
+        class="logout-btn"
+        (click)="logout()">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
+
+    <ion-modal #characterModal trigger="select-avatar-btn" class="character-select-modal">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Elige tu personaje</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="characterModal.dismiss()">Cerrar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" *ngFor="let character of characters">
+                <div class="character-card" (click)="selectCharacter(character); characterModal.dismiss()">
+                  <img [src]="character.image" [alt]="character.name">
+                  <div class="character-name">{{ character.name }}</div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</ion-app>
