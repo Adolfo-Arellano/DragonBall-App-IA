@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'https://dragonball-app-ia.onrender.com',
   firebaseConfig: {
     apiKey: "AIzaSyB-0EDCDkJJjAhClpaZ7cjqnb6hlgB0X9I",
     authDomain: "dragonball-app.firebaseapp.com",

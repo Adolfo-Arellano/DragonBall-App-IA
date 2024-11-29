@@ -10,7 +10,9 @@ const openai = new OpenAI({
   apiKey: process.env['OPENAI_API_KEY'] || ''
 });
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:8100', 'https://dragonball-app-ia.web.app']
+}));
 app.use(express.json());
 
 interface StoryRequest {
@@ -38,7 +40,7 @@ app.post('/api/generate-story', async (req: Request<{}, {}, StoryRequest>, res: 
   }
 });
 
-const port = process.env['PORT'] || 3000;
-app.listen(port, () => {
+const port = parseInt(process.env['PORT'] || '3000');
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
 });
