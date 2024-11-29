@@ -1,3 +1,8 @@
+# Requisitos previos:
+- Node.js
+- npm
+- Ionic CLI
+
 # Configuracion del proyecto
 
 1. Clonar el repositorio:
@@ -29,6 +34,12 @@
 - Express
 - OpenAI
 - DragonBall API
+
+# Documentacion
+- https://hackmd.io/JGGvfV9WTq-8nD3AUe-cHw?both
+
+# Presentacion
+- https://www.canva.com/design/DAGXsyj6t0M/xIwoo4X6sU0klGc_UJXqrw/edit?locale=es-ES
 
 # Autor
 - Adolfo Arellano Covarrubias
